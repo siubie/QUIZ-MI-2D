@@ -39,12 +39,6 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  _onDropdownChanged(String value) {
-    setState(() {
-      selectedDropdown = value;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -113,7 +107,7 @@ class _MyAppState extends State<MyApp> {
                     ),
                   ],
                 ),
-                
+
                 Convert(konvertHandler: _konversiSuhu),
                 Expanded(
                   child: ListView.builder(
