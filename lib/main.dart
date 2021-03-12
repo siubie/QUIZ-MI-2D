@@ -17,27 +17,37 @@ class _MyAppState extends State<MyApp> {
   TextEditingController etInput = new TextEditingController();
   //variabel berubah
   double _inputUser = 0;
-  double _result = 0;
+  double _reamur = 0;
+  double _kelvin = 0;
+  double _fahrenheit = 0;
   String selectedDropdown = "kelvin";
   //0 fixing error di layout
   //buang expanded di result widget
   //1 buat variabel dropdown
-  var listSatuanSuhu = ["kelvin", "reamur"];
+  //var listSatuanSuhu = ["kelvin", "reamur"];
   List<String> listHasil = [];
 
   _konversiSuhu() {
     setState(() {
       print(listHasil.length);
       _inputUser = double.parse(etInput.text);
+      _reamur = _inputUser * 4 / 5;
+      _kelvin = _inputUser + 273;
+      _fahrenheit = (9/5 * _inputUser) +32;
+      listHasil.add("Konversi dari : " +
+                "$_inputUser" +
+                " ke " +
+                "$_reamur" +
+                " Kelvin");
       switch (selectedDropdown) {
         case "kelvin":
           {
             // statements;
-            _result = _inputUser + 273;
+            //_kelvin = _inputUser + 273;
             listHasil.add("Konversi dari : " +
                 "$_inputUser" +
                 " ke " +
-                "$_result" +
+                "$_kelvin" +
                 " Kelvin");
           }
           break;
@@ -45,14 +55,27 @@ class _MyAppState extends State<MyApp> {
         case "reamur":
           {
             //statements;
-            _result = _inputUser * 4 / 5;
+           // _result = _inputUser * 4 / 5;
             listHasil.add("Konversi dari : " +
                 "$_inputUser" +
                 " ke " +
-                "$_result" +
+                "$_reamur" +
                 " Reamur");
           }
           break;
+        
+        case "fahrenheit":
+          {
+            //statements;
+           // _result = _inputUser * 4 / 5;
+            listHasil.add("Konversi dari : " +
+                "$_inputUser" +
+                " ke " +
+                "$_fahrenheit" +
+                " Fahrenheit");
+          }
+          break;
+        
       }
     });
   }
@@ -71,6 +94,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
           appBar: AppBar(
             title: Text("Konverter Suhu"),
@@ -83,24 +107,14 @@ class _MyAppState extends State<MyApp> {
               children: [
                 Input(etInput: etInput),
                 //3 buat dropdown biasa
-                DropdownButton(
-                  items: listSatuanSuhu.map((String value) {
-                    return DropdownMenuItem(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  value: selectedDropdown,
-                  onChanged: _onDropdownChanged,
-                  isExpanded: true,
-                ),
+                
                 Container(
                   margin: EdgeInsets.only(top: 20, bottom: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Result(
-                        result: _result,
+                        reamur: _reamur, kelvin : _kelvin, fahrenheit : _fahrenheit,
                       ),
                     ],
                   ),
