@@ -53,6 +53,17 @@ class _MyAppState extends State<MyApp> {
                 " Reamur");
           }
           break;
+        case "fahrenheit":
+          {
+            //statements;
+            _result = (_inputUser * 9 / 5) + 32;
+            listHasil.add("Konversi dari : " +
+                "$_inputUser" +
+                " ke " +
+                "$_result" +
+                " Fahrenheit");
+          }
+          break;
       }
     });
   }
@@ -66,6 +77,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -83,17 +95,7 @@ class _MyAppState extends State<MyApp> {
               children: [
                 Input(etInput: etInput),
                 //3 buat dropdown biasa
-                DropdownButton(
-                  items: listSatuanSuhu.map((String value) {
-                    return DropdownMenuItem(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  value: selectedDropdown,
-                  onChanged: _onDropdownChanged,
-                  isExpanded: true,
-                ),
+
                 Container(
                   margin: EdgeInsets.only(top: 20, bottom: 20),
                   child: Row(
