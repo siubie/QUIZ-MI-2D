@@ -54,56 +54,7 @@ class _MyAppState extends State<MyApp> {
               children: [
                 Input(etInput: etInput),
                 //3 buat dropdown biasa
-               Container(
-      child: 
-      Row (
-      mainAxisAlignment: MainAxisAlignment.spaceAround,
-      crossAxisAlignment: CrossAxisAlignment.center,
-      children: <Widget> [
-        Column(
-      children: <Widget>[
-       Text("Suhu Dalam ",
-       style: TextStyle(fontSize: 16),
-       ),
-       Text("Kelvin",
-       style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
-       ),
-        Divider(),
-        Text(
-          '$_kelvin', 
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-        ),
-          ],
-        ),
-        Column(
-      children: <Widget>[
-       Text("Suhu Dalam ",style: TextStyle(fontSize: 16),
-       ),
-       Text("Reamour",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
-       ),
-        Divider(),
-        Text(
-          '$_reamur', 
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-        ),
-          ],
-        ),
-        Column(
-      children: <Widget>[
-       Text("Suhu Dalam ",style: TextStyle(fontSize: 16),
-       ),
-       Text("Fahrenheit",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
-       ),
-        Divider(),
-        Text(
-          '$_fahrenheit', 
-          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
-        ),
-          ],
-        ),
-    ],
-              ),
-    ),
+               Result(kelvin: _kelvin, reamur: _reamur, fahrenheit: _fahrenheit),
                 Convert(konvertHandler: konvertHandler),
 
 
