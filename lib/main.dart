@@ -18,54 +18,25 @@ class _MyAppState extends State<MyApp> {
   //variabel berubah
   double _inputUser = 0;
   double _result = 0;
-  String selectedDropdown = "kelvin";
-  //0 fixing error di layout
-  //buang expanded di result widget
-  //1 buat variabel dropdown
-  var listSatuanSuhu = ["kelvin", "reamur"];
-  List<String> listHasil = [];
+ double _kelvin = 0;
+ double _reamur = 0;
+ double _fahrenheit =0;
+ //tambahkan variabel lain yang dibutuhkan
 
-  _konversiSuhu() {
-    setState(() {
-      print(listHasil.length);
-      _inputUser = double.parse(etInput.text);
-      switch (selectedDropdown) {
-        case "kelvin":
-          {
-            // statements;
-            _result = _inputUser + 273;
-            listHasil.add("Konversi dari : " +
-                "$_inputUser" +
-                " ke " +
-                "$_result" +
-                " Kelvin");
-          }
-          break;
-
-        case "reamur":
-          {
-            //statements;
-            _result = _inputUser * 4 / 5;
-            listHasil.add("Konversi dari : " +
-                "$_inputUser" +
-                " ke " +
-                "$_result" +
-                " Reamur");
-          }
-          break;
-      }
+ void konvertHandler(){
+   setState(() {
+     _inputUser = double.parse(etInput.text);
+    _kelvin = _inputUser + 273;
+    _reamur = _inputUser *(4/5);    
+    _fahrenheit = 9/5 * _inputUser + 32;
     });
-  }
 
-  _onDropdownChanged(String value) {
-    setState(() {
-      selectedDropdown = value;
-    });
-  }
+ }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -83,39 +54,60 @@ class _MyAppState extends State<MyApp> {
               children: [
                 Input(etInput: etInput),
                 //3 buat dropdown biasa
-                DropdownButton(
-                  items: listSatuanSuhu.map((String value) {
-                    return DropdownMenuItem(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  value: selectedDropdown,
-                  onChanged: _onDropdownChanged,
-                  isExpanded: true,
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 20, bottom: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Result(
-                        result: _result,
-                      ),
-                    ],
-                  ),
-                ),
-                Convert(konvertHandler: _konversiSuhu),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: listHasil.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        child: Text(listHasil[index]),
-                      );
-                    },
-                  ),
-                ),
+               Container(
+      child: 
+      Row (
+      mainAxisAlignment: MainAxisAlignment.spaceAround,
+      crossAxisAlignment: CrossAxisAlignment.center,
+      children: <Widget> [
+        Column(
+      children: <Widget>[
+       Text("Suhu Dalam ",
+       style: TextStyle(fontSize: 16),
+       ),
+       Text("Kelvin",
+       style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
+       ),
+        Divider(),
+        Text(
+          '$_kelvin', 
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+          ],
+        ),
+        Column(
+      children: <Widget>[
+       Text("Suhu Dalam ",style: TextStyle(fontSize: 16),
+       ),
+       Text("Reamour",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
+       ),
+        Divider(),
+        Text(
+          '$_reamur', 
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+          ],
+        ),
+        Column(
+      children: <Widget>[
+       Text("Suhu Dalam ",style: TextStyle(fontSize: 16),
+       ),
+       Text("Fahrenheit",style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold),
+       ),
+        Divider(),
+        Text(
+          '$_fahrenheit', 
+          style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+        ),
+          ],
+        ),
+    ],
+              ),
+    ),
+                Convert(konvertHandler: konvertHandler),
+
+
+               
               ],
             ),
           ),
