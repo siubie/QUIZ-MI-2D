@@ -22,46 +22,22 @@ class _MyAppState extends State<MyApp> {
   //0 fixing error di layout
   //buang expanded di result widget
   //1 buat variabel dropdown
+  double kelvin = 0;
+  double reamur = 0;
+  double fahrenheit = 0;
+  String title ;
   var listSatuanSuhu = ["kelvin", "reamur"];
   List<String> listHasil = [];
 
   _konversiSuhu() {
     setState(() {
-      print(listHasil.length);
-      _inputUser = double.parse(etInput.text);
-      switch (selectedDropdown) {
-        case "kelvin":
-          {
-            // statements;
-            _result = _inputUser + 273;
-            listHasil.add("Konversi dari : " +
-                "$_inputUser" +
-                " ke " +
-                "$_result" +
-                " Kelvin");
-          }
-          break;
-
-        case "reamur":
-          {
-            //statements;
-            _result = _inputUser * 4 / 5;
-            listHasil.add("Konversi dari : " +
-                "$_inputUser" +
-                " ke " +
-                "$_result" +
-                " Reamur");
-          }
-          break;
-      }
-    });
+           _inputUser = double.parse(etInput.text);
+            kelvin = _inputUser+273;
+            reamur = _inputUser+(4/5);
+            fahrenheit = (9/5)+_inputUser+32;
+         });
   }
 
-  _onDropdownChanged(String value) {
-    setState(() {
-      selectedDropdown = value;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -83,24 +59,13 @@ class _MyAppState extends State<MyApp> {
               children: [
                 Input(etInput: etInput),
                 //3 buat dropdown biasa
-                DropdownButton(
-                  items: listSatuanSuhu.map((String value) {
-                    return DropdownMenuItem(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  value: selectedDropdown,
-                  onChanged: _onDropdownChanged,
-                  isExpanded: true,
-                ),
                 Container(
                   margin: EdgeInsets.only(top: 20, bottom: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Result(
-                        result: _result,
+                        result: _result, title: title,
                       ),
                     ],
                   ),
