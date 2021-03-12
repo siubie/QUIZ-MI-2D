@@ -20,7 +20,7 @@ class _MyAppState extends State<MyApp> {
   double _reamur = 0;
   double _kelvin = 0;
   double _fahrenheit = 0;
-  String selectedDropdown = "kelvin";
+  //String selectedDropdown = "kelvin";
   //0 fixing error di layout
   //buang expanded di result widget
   //1 buat variabel dropdown
@@ -38,53 +38,63 @@ class _MyAppState extends State<MyApp> {
                 "$_inputUser" +
                 " ke " +
                 "$_reamur" +
-                " Kelvin");
-      switch (selectedDropdown) {
-        case "kelvin":
-          {
-            // statements;
-            //_kelvin = _inputUser + 273;
-            listHasil.add("Konversi dari : " +
+                " Reamur");
+      listHasil.add("Konversi dari : " +
                 "$_inputUser" +
                 " ke " +
                 "$_kelvin" +
                 " Kelvin");
-          }
-          break;
-
-        case "reamur":
-          {
-            //statements;
-           // _result = _inputUser * 4 / 5;
-            listHasil.add("Konversi dari : " +
-                "$_inputUser" +
-                " ke " +
-                "$_reamur" +
-                " Reamur");
-          }
-          break;
-        
-        case "fahrenheit":
-          {
-            //statements;
-           // _result = _inputUser * 4 / 5;
-            listHasil.add("Konversi dari : " +
+      listHasil.add("Konversi dari : " +
                 "$_inputUser" +
                 " ke " +
                 "$_fahrenheit" +
                 " Fahrenheit");
-          }
-          break;
+      // switch (selectedDropdown) {
+      //   case "kelvin":
+      //     {
+      //       // statements;
+      //       //_kelvin = _inputUser + 273;
+      //       listHasil.add("Konversi dari : " +
+      //           "$_inputUser" +
+      //           " ke " +
+      //           "$_kelvin" +
+      //           " Kelvin");
+      //     }
+      //     break;
+
+      //   case "fahrenheit":
+      //     {
+      //       //statements;
+      //      // _result = _inputUser * 4 / 5;
+      //       listHasil.add("Konversi dari : " +
+      //           "$_inputUser" +
+      //           " ke " +
+      //           "$_reamur" +
+      //           " Reamur");
+      //     }
+      //     break;
         
-      }
+      //   case "fahrenheit":
+      //     {
+      //       //statements;
+      //      // _result = _inputUser * 4 / 5;
+      //       listHasil.add("Konversi dari : " +
+      //           "$_inputUser" +
+      //           " ke " +
+      //           "$_fahrenheit" +
+      //           " Fahrenheit");
+      //     }
+      //     break;
+        
+      // }
     });
   }
 
-  _onDropdownChanged(String value) {
-    setState(() {
-      selectedDropdown = value;
-    });
-  }
+  // _onDropdownChanged(String value) {
+  //   setState(() {
+  //     selectedDropdown = value;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
