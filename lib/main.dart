@@ -13,11 +13,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  
   // text controller
   TextEditingController etInput = new TextEditingController();
   //variabel berubah
   double _inputUser = 0;
   double _result = 0;
+  double _kelvin = 0;
+  double _reamur = 0;
+  double _fahrenhet = 0;
   String selectedDropdown = "kelvin";
   //0 fixing error di layout
   //buang expanded di result widget
@@ -27,33 +31,37 @@ class _MyAppState extends State<MyApp> {
 
   _konversiSuhu() {
     setState(() {
-      print(listHasil.length);
-      _inputUser = double.parse(etInput.text);
-      switch (selectedDropdown) {
-        case "kelvin":
-          {
-            // statements;
-            _result = _inputUser + 273;
-            listHasil.add("Konversi dari : " +
-                "$_inputUser" +
-                " ke " +
-                "$_result" +
-                " Kelvin");
-          }
-          break;
+    _inputUser = double.parse(etInput.text);
+    _fahrenhet = (_inputUser * 9 / 5) + 32;
+    _reamur = _inputUser * 4 / 5;
+    _kelvin = _inputUser + 273;
+      // print(listHasil.length);
+      // _inputUser = double.parse(etInput.text);
+      // switch (selectedDropdown) {
+      //   case "kelvin":
+      //     {
+      //       // statements;
+      //       _result = _inputUser + 273;
+      //       listHasil.add("Konversi dari : " +
+      //           "$_inputUser" +
+      //           " ke " +
+      //           "$_result" +
+      //           " Kelvin");
+      //     }
+      //     break;
 
-        case "reamur":
-          {
-            //statements;
-            _result = _inputUser * 4 / 5;
-            listHasil.add("Konversi dari : " +
-                "$_inputUser" +
-                " ke " +
-                "$_result" +
-                " Reamur");
-          }
-          break;
-      }
+      //   case "reamur":
+      //     {
+      //       //statements;
+      //       _result = _inputUser * 4 / 5;
+      //       listHasil.add("Konversi dari : " +
+      //           "$_inputUser" +
+      //           " ke " +
+      //           "$_result" +
+      //           " Reamur");
+      //     }
+      //     break;
+      // }
     });
   }
 
@@ -65,7 +73,10 @@ class _MyAppState extends State<MyApp> {
 
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -81,19 +92,45 @@ class _MyAppState extends State<MyApp> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.max,
               children: [
-                Input(etInput: etInput),
+                Column(
+          children: [
+            Text("Kelvin", style: TextStyle(fontSize : 20),
+            ),
+            Text("$_kelvin", style: TextStyle(fontSize : 30),
+            ),                                                          
+      ],                         
+    ),
+        Column(
+          children: [
+            Text("Reamur", style: TextStyle(fontSize : 20),
+            ),
+            Text("$_reamur", style: TextStyle(fontSize : 30),
+            ),                                                          
+      ],                         
+    ),
+        Column(
+          children: [
+            Text("Fahrenheit", style: TextStyle(fontSize : 20),
+            ),
+            Text("$_fahrenhet", style: TextStyle(fontSize : 30),
+            ),                                                          
+           ],     
+        ),
+
+                
+               // Input(etInput: etInput),
                 //3 buat dropdown biasa
-                DropdownButton(
-                  items: listSatuanSuhu.map((String value) {
-                    return DropdownMenuItem(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  value: selectedDropdown,
-                  onChanged: _onDropdownChanged,
-                  isExpanded: true,
-                ),
+                //DropdownButton(
+                  //items: listSatuanSuhu.map((String value) {
+                   // return DropdownMenuItem(
+                      //value: value,
+                     // child: Text(value),
+                   // );
+                 // }).toList(),
+                  //value: selectedDropdown,
+                  //onChanged: _onDropdownChanged,
+                  //isExpanded: true,
+               // ),
                 Container(
                   margin: EdgeInsets.only(top: 20, bottom: 20),
                   child: Row(
