@@ -17,55 +17,30 @@ class _MyAppState extends State<MyApp> {
   TextEditingController etInput = new TextEditingController();
   //variabel berubah
   double _inputUser = 0;
-  double _result = 0;
   String selectedDropdown = "kelvin";
+  double _kelvin = 0;
+  double _reamur = 0;
+  double _fahrenheit = 0;
   //0 fixing error di layout
   //buang expanded di result widget
   //1 buat variabel dropdown
-  var listSatuanSuhu = ["kelvin", "reamur"];
-  List<String> listHasil = [];
 
   _konversiSuhu() {
     setState(() {
-      print(listHasil.length);
+      setState(() {
       _inputUser = double.parse(etInput.text);
-      switch (selectedDropdown) {
-        case "kelvin":
-          {
-            // statements;
-            _result = _inputUser + 273;
-            listHasil.add("Konversi dari : " +
-                "$_inputUser" +
-                " ke " +
-                "$_result" +
-                " Kelvin");
-          }
-          break;
-
-        case "reamur":
-          {
-            //statements;
-            _result = _inputUser * 4 / 5;
-            listHasil.add("Konversi dari : " +
-                "$_inputUser" +
-                " ke " +
-                "$_result" +
-                " Reamur");
-          }
-          break;
-      }
+      _kelvin = _inputUser + 273;
+      _reamur = _inputUser * 4 / 5;
+      _fahrenheit = (_inputUser * 9 / 5) + 32; 
+    });
     });
   }
 
-  _onDropdownChanged(String value) {
-    setState(() {
-      selectedDropdown = value;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -78,44 +53,51 @@ class _MyAppState extends State<MyApp> {
           body: Container(
             margin: EdgeInsets.all(8),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               mainAxisSize: MainAxisSize.max,
               children: [
                 Input(etInput: etInput),
                 //3 buat dropdown biasa
-                DropdownButton(
-                  items: listSatuanSuhu.map((String value) {
-                    return DropdownMenuItem(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  value: selectedDropdown,
-                  onChanged: _onDropdownChanged,
-                  isExpanded: true,
-                ),
-                Container(
-                  margin: EdgeInsets.only(top: 20, bottom: 20),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Result(
-                        result: _result,
-                      ),
-                    ],
+                // DropdownButton(
+                //   items: listSatuanSuhu.map((String value) {
+                //     return DropdownMenuItem(
+                //       value: value,
+                //       child: Text(value),
+                //     );
+                //   }).toList(),
+                //   value: selectedDropdown,
+                //   onChanged: _onDropdownChanged,
+                //   isExpanded: true,
+                // ),
+
+                Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Result(
+                    title: " Kelvin ",
+                    result: _kelvin,
                   ),
-                ),
+                  Result(
+                    title: " Reamur ",
+                    result: _reamur,
+                  ),
+                  Result(
+                    title: " fahrenheit ",
+                    result: _fahrenheit,
+                  ),
+                ],
+              ),
                 Convert(konvertHandler: _konversiSuhu),
-                Expanded(
-                  child: ListView.builder(
-                    itemCount: listHasil.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                        child: Text(listHasil[index]),
-                      );
-                    },
-                  ),
-                ),
+                // Expanded(
+                //   child: ListView.builder(
+                //     itemCount: listHasil.length,
+                //     itemBuilder: (context, index) {
+                //       return Container(
+                //         child: Text(listHasil[index]),
+                //       );
+                //     },
+                //   ),
+                // ),
               ],
             ),
           ),
