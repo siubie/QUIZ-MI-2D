@@ -16,10 +16,12 @@ class _MyAppState extends State<MyApp> {
   // text controller
   TextEditingController etInput = new TextEditingController();
   //variabel berubah
+  int _counter = 0;
   double _inputUser = 0;
   double _reamur = 0;
   double _kelvin = 0;
   double _fahrenheit = 0;
+  Color _warna = Colors.green[100];
   //String selectedDropdown = "kelvin";
   //0 fixing error di layout
   //buang expanded di result widget
@@ -29,6 +31,12 @@ class _MyAppState extends State<MyApp> {
 
   _konversiSuhu() {
     setState(() {
+      _counter++;
+      if (_counter%2==0) {
+        _warna = Colors.red;
+      } else {
+        _warna = Colors.green;
+      }
       print(listHasil.length);
       _inputUser = double.parse(etInput.text);
       _reamur = _inputUser * 4 / 5;
@@ -49,53 +57,8 @@ class _MyAppState extends State<MyApp> {
                 " ke " +
                 "$_fahrenheit" +
                 " Fahrenheit");
-      // switch (selectedDropdown) {
-      //   case "kelvin":
-      //     {
-      //       // statements;
-      //       //_kelvin = _inputUser + 273;
-      //       listHasil.add("Konversi dari : " +
-      //           "$_inputUser" +
-      //           " ke " +
-      //           "$_kelvin" +
-      //           " Kelvin");
-      //     }
-      //     break;
-
-      //   case "fahrenheit":
-      //     {
-      //       //statements;
-      //      // _result = _inputUser * 4 / 5;
-      //       listHasil.add("Konversi dari : " +
-      //           "$_inputUser" +
-      //           " ke " +
-      //           "$_reamur" +
-      //           " Reamur");
-      //     }
-      //     break;
-        
-      //   case "fahrenheit":
-      //     {
-      //       //statements;
-      //      // _result = _inputUser * 4 / 5;
-      //       listHasil.add("Konversi dari : " +
-      //           "$_inputUser" +
-      //           " ke " +
-      //           "$_fahrenheit" +
-      //           " Fahrenheit");
-      //     }
-      //     break;
-        
-      // }
     });
   }
-
-  // _onDropdownChanged(String value) {
-  //   setState(() {
-  //     selectedDropdown = value;
-  //   });
-  // }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -117,7 +80,6 @@ class _MyAppState extends State<MyApp> {
               children: [
                 Input(etInput: etInput),
                 //3 buat dropdown biasa
-                
                 Container(
                   margin: EdgeInsets.only(top: 20, bottom: 20),
                   child: Row(
@@ -139,17 +101,16 @@ class _MyAppState extends State<MyApp> {
                   ),
                 ),
                 Convert(konvertHandler: _konversiSuhu),
-                SizedBox(
-                  height: 20,
-                ),
+                SizedBox(height: 10,),
                 Expanded(
                   child: ListView.builder(
                     itemCount: listHasil.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        child: Text(listHasil[index]),
+                      margin: EdgeInsets.all(10),
+                      child: Text(listHasil[index], style: TextStyle(fontSize: 15, color: _warna),),
                       );
-                    },
+                     },
                   ),
                 ),
               ],
