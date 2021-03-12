@@ -18,6 +18,8 @@ class _MyAppState extends State<MyApp> {
   //variabel berubah
   double _inputUser = 0;
   double _result = 0;
+  double _kelvin=0;
+  double _reamor=0;
   String selectedDropdown = "kelvin";
   //0 fixing error di layout
   //buang expanded di result widget
@@ -57,12 +59,6 @@ class _MyAppState extends State<MyApp> {
     });
   }
 
-  _onDropdownChanged(String value) {
-    setState(() {
-      selectedDropdown = value;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -71,6 +67,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
+        debugShowCheckedModeBanner: false, // untuk menghilangkan banner debug
         home: Scaffold(
           appBar: AppBar(
             title: Text("Konverter Suhu"),
@@ -82,25 +79,13 @@ class _MyAppState extends State<MyApp> {
               mainAxisSize: MainAxisSize.max,
               children: [
                 Input(etInput: etInput),
-                //3 buat dropdown biasa
-                DropdownButton(
-                  items: listSatuanSuhu.map((String value) {
-                    return DropdownMenuItem(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  value: selectedDropdown,
-                  onChanged: _onDropdownChanged,
-                  isExpanded: true,
-                ),
                 Container(
                   margin: EdgeInsets.only(top: 20, bottom: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Result(
-                        result: _result,
+                        kelvin: _kelvin, reamor: _reamor //mengubah widget 
                       ),
                     ],
                   ),
