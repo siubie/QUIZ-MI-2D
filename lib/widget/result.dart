@@ -61,7 +61,7 @@ class Result extends StatelessWidget {
               ),
             ),
             Text(
-              '$_reamur',
+              '$_fahrenheit',
               style: TextStyle(
                 fontSize: 30,
               ),
