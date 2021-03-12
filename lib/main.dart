@@ -107,8 +107,10 @@ class _MyAppState extends State<MyApp> {
                     itemCount: listHasil.length,
                     itemBuilder: (context, index) {
                       return Container(
-                      margin: EdgeInsets.all(10),
-                      child: Text(listHasil[index], style: TextStyle(fontSize: 15, color: _warna),),
+                      height: 20,
+                      //margin: EdgeInsets.all(10),
+                      child: Text(listHasil[index], style: TextStyle(fontSize: 15, /*color: _warna,*/ ),),
+                      color: _warna,
                       );
                      },
                   ),
