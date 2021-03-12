@@ -34,6 +34,21 @@ class _MyAppState extends State<MyApp> {
       _kelvin = _inputUser + 273;
       _reamor = _inputUser * (4/5);
       _fahrenhrit = 9/5 * _inputUser + 32;
+      listHasil.add("Konversi dari : " +
+                "$_inputUser" +
+                " ke " +
+                "$_kelvin" +
+                " Kelvin");
+      listHasil.add("Konversi dari : " +
+                "$_inputUser" +
+                " ke " +
+                "$_reamor" +
+                " Reamur");
+      listHasil.add("Konversi dari : " +
+                "$_inputUser" +
+                " ke " +
+                "$_fahrenhrit" +
+                " Fahrenheit");
     });
   }
 
@@ -98,7 +113,8 @@ class _MyAppState extends State<MyApp> {
                     itemCount: listHasil.length,
                     itemBuilder: (context, index) {
                       return Container(
-                        child: Text(listHasil[index]),
+                        margin: EdgeInsets.all(10),
+                        child: Text(listHasil[index], style: TextStyle(fontSize: 15),),
                       );
                     },
                   ),
