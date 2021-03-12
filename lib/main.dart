@@ -18,48 +18,23 @@ class _MyAppState extends State<MyApp> {
   //variabel berubah
   double _inputUser = 0;
   double _result = 0;
-  String selectedDropdown = "kelvin";
-  //0 fixing error di layout
-  //buang expanded di result widget
-  //1 buat variabel dropdown
-  var listSatuanSuhu = ["kelvin", "reamur"];
+  double _kelvin = 0;
+  double _reamur = 0;
+  double _fahrenheit = 0;
   List<String> listHasil = [];
 
   _konversiSuhu() {
     setState(() {
-      print(listHasil.length);
       _inputUser = double.parse(etInput.text);
-      switch (selectedDropdown) {
-        case "kelvin":
-          {
-            // statements;
-            _result = _inputUser + 273;
-            listHasil.add("Konversi dari : " +
-                "$_inputUser" +
-                " ke " +
-                "$_result" +
-                " Kelvin");
-          }
-          break;
-
-        case "reamur":
-          {
-            //statements;
-            _result = _inputUser * 4 / 5;
-            listHasil.add("Konversi dari : " +
-                "$_inputUser" +
-                " ke " +
-                "$_result" +
-                " Reamur");
-          }
-          break;
-      }
-    });
-  }
-
-  _onDropdownChanged(String value) {
-    setState(() {
-      selectedDropdown = value;
+      _kelvin = _inputUser + 273;
+      _reamur = _inputUser * (4 / 5);
+      _fahrenheit = (_inputUser * (9 / 5)) + 32;
+      listHasil.add("kelvin: " +
+          "$_kelvin" +
+          ", reamur" +
+          "$_reamur" +
+          ", fahrenheit" +
+          "$_fahrenheit");
     });
   }
 
@@ -83,25 +58,16 @@ class _MyAppState extends State<MyApp> {
               children: [
                 Input(etInput: etInput),
                 //3 buat dropdown biasa
-                DropdownButton(
-                  items: listSatuanSuhu.map((String value) {
-                    return DropdownMenuItem(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  value: selectedDropdown,
-                  onChanged: _onDropdownChanged,
-                  isExpanded: true,
-                ),
+
                 Container(
                   margin: EdgeInsets.only(top: 20, bottom: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Result(
-                        result: _result,
-                      ),
+                          kelvin: _kelvin,
+                          reamur: _reamur,
+                          fahrenheit: _fahrenheit),
                     ],
                   ),
                 ),
