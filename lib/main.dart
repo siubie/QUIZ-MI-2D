@@ -18,6 +18,9 @@ class _MyAppState extends State<MyApp> {
   //variabel berubah
   double _inputUser = 0;
   double _result = 0;
+  double kelvin=0;
+  double reamur = 0;
+  double fahrenheit = 0;
   String selectedDropdown = "kelvin";
   //0 fixing error di layout
   //buang expanded di result widget
@@ -27,8 +30,12 @@ class _MyAppState extends State<MyApp> {
 
   _konversiSuhu() {
     setState(() {
+    _inputUser = double.parse(etInput.text);
+     kelvin = _inputUser + 273;
+     reamur = _inputUser*(4/5);
+     fahrenheit = _inputUser*(9/5)+32;
       print(listHasil.length);
-      _inputUser = double.parse(etInput.text);
+      
       switch (selectedDropdown) {
         case "kelvin":
           {
@@ -66,6 +73,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -83,24 +91,24 @@ class _MyAppState extends State<MyApp> {
               children: [
                 Input(etInput: etInput),
                 //3 buat dropdown biasa
-                DropdownButton(
-                  items: listSatuanSuhu.map((String value) {
-                    return DropdownMenuItem(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  value: selectedDropdown,
-                  onChanged: _onDropdownChanged,
-                  isExpanded: true,
-                ),
+                
                 Container(
                   margin: EdgeInsets.only(top: 20, bottom: 20),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
+                      
                       Result(
-                        result: _result,
+                        result: kelvin,
+                        title: "Kelvin",
+                      ),
+                      Result(
+                        result: reamur,
+                        title: "Reamur",
+                      ),
+                      Result(
+                        result: fahrenheit,
+                        title: "Fahrenheit",
                       ),
                     ],
                   ),
