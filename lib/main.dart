@@ -23,6 +23,9 @@ class _MyAppState extends State<MyApp> {
   //buang expanded di result widget
   //1 buat variabel dropdown
   var listSatuanSuhu = ["kelvin", "reamur"];
+  double _kelvin = 0;
+  double _reamour = 0;
+  double _fahrenheit = 0;
   List<String> listHasil = [];
 
   _konversiSuhu() {
@@ -47,7 +50,7 @@ class _MyAppState extends State<MyApp> {
             //statements;
             _result = _inputUser * 4 / 5;
             listHasil.add("Konversi dari : " +
-                "$_inputUser" +
+                "$_inputUser" + 
                 " ke " +
                 "$_result" +
                 " Reamur");
@@ -71,6 +74,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
           appBar: AppBar(
             title: Text("Konverter Suhu"),
@@ -91,7 +95,7 @@ class _MyAppState extends State<MyApp> {
                     );
                   }).toList(),
                   value: selectedDropdown,
-                  onChanged: _onDropdownChanged,
+                  onChanged: (value){},
                   isExpanded: true,
                 ),
                 Container(
@@ -100,7 +104,7 @@ class _MyAppState extends State<MyApp> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Result(
-                        result: _result,
+                        kelvin: _kelvin, reamour: _reamour, fahrenheit: _fahrenheit
                       ),
                     ],
                   ),

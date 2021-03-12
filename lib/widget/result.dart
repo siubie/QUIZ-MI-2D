@@ -1,11 +1,16 @@
 import 'package:flutter/material.dart';
 
 class Result extends StatelessWidget {
-  const Result({Key key, @required double result})
-      : _result = result,
-        super(key: key);
+  const Result({Key key,
+  @required double kelvin,
+    @required double reamour,
+    @required double fahrenheit,
+   })
+      : _kelvin = kelvin, _reamour = reamour, _fahrenheit = fahrenheit, super(key: key);
 
-  final double _result;
+  final double _kelvin;
+  final double _reamour;
+  final double _fahrenheit;
 
   @override
   Widget build(BuildContext context) {
@@ -13,13 +18,41 @@ class Result extends StatelessWidget {
       child: Column(
         children: [
           Text("Hasil Konversi"),
-          Container(
-            margin: EdgeInsets.only(top: 20, bottom: 20),
-            child: Text(
-              _result.toStringAsFixed(2),
-              style: TextStyle(fontSize: 36),
-            ),
-          ),
+          Column(
+          children: <Widget>[
+           Text("Kelvin",
+           style: TextStyle(
+             fontSize: 21, color: Colors.grey[700]),),
+           Text(
+             '$_kelvin',
+             style: TextStyle(
+             fontSize: 30),),
+          ],
+        ),
+        Column(
+          children: <Widget>[
+          Text("Reamur",
+          style: TextStyle(
+             fontSize: 21, color: Colors.grey[700]),),
+          Text(
+            '$_reamour',
+            style: TextStyle(
+             fontSize: 30),
+          )
+          ],
+        ),
+        Column(
+          children: <Widget>[
+          Text("Fahrenheit",
+          style: TextStyle(
+             fontSize: 21, color: Colors.grey[700]),),
+          Text(
+            '$_fahrenheit',
+            style: TextStyle(
+             fontSize: 30),
+          )
+          ],
+        ),
         ],
       ),
     );
