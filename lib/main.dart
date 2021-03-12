@@ -71,6 +71,7 @@ class _MyAppState extends State<MyApp> {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
+        debugShowCheckedModeBanner: false,
         home: Scaffold(
           appBar: AppBar(
             title: Text("Konverter Suhu"),
@@ -83,17 +84,7 @@ class _MyAppState extends State<MyApp> {
               children: [
                 Input(etInput: etInput),
                 //3 buat dropdown biasa
-                DropdownButton(
-                  items: listSatuanSuhu.map((String value) {
-                    return DropdownMenuItem(
-                      value: value,
-                      child: Text(value),
-                    );
-                  }).toList(),
-                  value: selectedDropdown,
-                  onChanged: _onDropdownChanged,
-                  isExpanded: true,
-                ),
+                
                 Container(
                   margin: EdgeInsets.only(top: 20, bottom: 20),
                   child: Row(
